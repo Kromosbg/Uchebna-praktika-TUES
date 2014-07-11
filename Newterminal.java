@@ -33,16 +33,11 @@ public class Newterminal extends Dir {
 			}
 			
 			if(cmd.equals("cd")) {
-				Cd newCd = new Cd();
-				newCd.newFolder=currentFolder.getAbsolutePath() + "\\" + userInput.next();
-				currentFolder=newCd.runCd();
+				Cd newCd = new Cd(userInput.next());				
+				currentFolder=newCd.executeCommand(currentFolder);
 			}
+
 			
-			if(cmd.equals("cd..")) {
-				Back cd= new Back();
-				cd.ch=currentFolder.getAbsolutePath();
-				currentFolder=cd.back();
-			}	
 			
 			if(cmd.equals("md") || cmd.equals("mkdir")) {
 				Md newMd = new Md();
