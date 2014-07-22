@@ -1,29 +1,37 @@
-package stringvars;
+package stringvars.commands;
 
 import java.io.File;
 
-public class Md {
-	String newFolder = "";
+import stringvars.Command;
 
-	public void md() {
-		  File newDir = new File(newFolder);
-		  
-		  if (!newDir.exists()) {
-		    boolean result = false;
+public class Md implements Command {
 
-		    try{
-		        newDir.mkdir();
-		        result = true;
-		     } catch(SecurityException se){
-		       System.out.println("Dir exist");
-		     }        
-		     if(result) {    
-		       System.out.println("DIR created");  
-		     }
-		     else {
-		    	System.out.println("Dir exist");
-		     }
-		  }
-	}	
+	public String newFolder = "";
+
+	public Md(String folder) {
+		newFolder = folder;
+	}
+
+	public String getNewFolder() {
+		return newFolder;
+	}
+
+	public void setNewFolder(String newFolder) {
+		this.newFolder = newFolder;
+	}
+
+	public File executeCommand(File currentFolder) {
+		File newDir = new File(currentFolder.getAbsolutePath() + "\\"
+				+ newFolder);
+		if (!newDir.exists()) {
+
+			newDir.mkdir();
+
+			System.out.println("DIR created");
+		} else {
+			System.out.println("Dir exist");
+		}
+
+		return currentFolder;
+	}
 }
-
