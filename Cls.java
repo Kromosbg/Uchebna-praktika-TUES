@@ -1,10 +1,15 @@
-package stringvars;
+package stringvars.commands;
 
-public class Cls {
+import java.io.File;
 
-	public static void cls() {
+import stringvars.Command;
+
+public class Cls implements Command{
+
+	public File executeCommand(File currentFolder) {
 		for( int i = 0; i < 25; i++ ) {
 		    System.out.println("");
 		}
+		return currentFolder;
 	}
 }
