@@ -1,6 +1,8 @@
-package stringvars;
+package stringvars.commands;
 
 import java.io.File;
+
+import stringvars.Command;
 
 public class Cd implements Command {
 
@@ -20,8 +22,7 @@ public class Cd implements Command {
 	}
 
 	public File executeCommand(File currentFolder) {
-
-		if ("..".equals(newFolder)) {
+		if ("..".equals(newFolder) ) {
 			File resultFolder = new File(currentFolder.getParent());
 			return resultFolder;
 		} else {
@@ -36,3 +37,4 @@ public class Cd implements Command {
 		}
 	}
 }
+
