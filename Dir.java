@@ -1,18 +1,17 @@
-package stringvars;
+package stringvars.commands;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 
-public class Dir {
+import stringvars.Command;
 
-	File folderToList = null;
-	long l;
+public class Dir implements Command{
 
-	public void runDir() {
 
-		File[] paths = folderToList.listFiles();
-		// System.out.println("Current working directory : "
-		// + folderToList.getAbsolutePath());
+	public File executeCommand(File currentFolder) {
+		long l;
+		File[] paths = currentFolder.listFiles();	
+		
 		for (File path : paths) {
 			System.out.print(path);
 
@@ -27,5 +26,6 @@ public class Dir {
 
 			}
 		}
+		return currentFolder;
 	}
 }
