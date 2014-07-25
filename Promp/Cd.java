@@ -2,6 +2,7 @@ package stringvars.commands;
 
 import java.io.File;
 
+import stringvars.ComResponse;
 import stringvars.Command;
 
 public class Cd implements Command {
@@ -21,20 +22,32 @@ public class Cd implements Command {
 		this.newFolder = newFolder;
 	}
 
-	public File executeCommand(File currentFolder) {
+	public ComResponse executeCommand(File currentFolder) {
+		
+		
 		if ("..".equals(newFolder) ) {
 			File resultFolder = new File(currentFolder.getParent());
-			return resultFolder;
-		} else {
-			File resultFolder = new File(currentFolder.getAbsolutePath() + "\\"
-					+ newFolder);
+			StringBuilder text = new StringBuilder();
+			currentFolder = resultFolder;
+			ComResponse current= new ComResponse(currentFolder, text );
+			return current;
+		} else { 
+			File resultFolder = new File(currentFolder.getAbsolutePath() + "\\"	+ newFolder);
 			if (resultFolder.exists()) {
-				return resultFolder;
+				currentFolder =resultFolder;
+				StringBuilder text = new StringBuilder();
+			//	text.append("do u see this");
+				ComResponse result= new ComResponse(resultFolder, text);
+				return result;
 			} else {
-				System.out.println("The system cannot find the path specified");
-			}
-			return currentFolder;
+				StringBuilder text = new StringBuilder();
+				text.append("The system cannot find the path specified");
+				File result1 = new File(currentFolder.getAbsolutePath());
+				currentFolder = result1;
+				ComResponse resultat= new ComResponse(currentFolder, text);
+				
+				return resultat;
+			}			
 		}
 	}
 }
-
