@@ -3,29 +3,36 @@ package stringvars.commands;
 import java.io.File;
 import java.text.SimpleDateFormat;
 
+import stringvars.ComResponse;
 import stringvars.Command;
 
 public class Dir implements Command{
 
+	String textone= "This is Folder";
 
-	public File executeCommand(File currentFolder) {
-		long l;
+	public ComResponse executeCommand(File currentFolder) {
 		File[] paths = currentFolder.listFiles();	
+		StringBuilder text = new StringBuilder("  ");
 		
-		for (File path : paths) {
-			System.out.print(path);
+		for (File path : paths) { 
+			
+			//System.out.println(path);
 
-			SimpleDateFormat sdf = new SimpleDateFormat("  dd/MM/yyyy HH:mm:ss  ");
-			System.out.print(sdf.format(path.lastModified()));
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("  dd/MM/yyyy  HH:mm:ss  ");
+			
+			text.append("\n");
+			text.append(path);
+		
+		
 
-			l = path.length();
-			if (path.isDirectory()) {
-				System.out.println("This is Folder");
-			} else {
-				System.out.println("length: " + l + " bytes");
 
-			}
+			text.append(sdf.format(path.lastModified()));
+			//System.out.println(path);
 		}
-		return currentFolder;
+		
+		ComResponse command= new ComResponse(currentFolder, text);
+		return command;
+
 	}
 }
