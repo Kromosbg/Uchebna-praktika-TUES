@@ -5,12 +5,11 @@ import java.io.File;
 import stringvars.ComResponse;
 import stringvars.Command;
 
-public class Md implements Command {
-
+public class Rd implements Command{
 	public String newFolder = "";
-
-	public Md(String folder) {
-		newFolder = folder;
+	
+	public Rd(String argument) {
+		newFolder = argument;
 	}
 
 	public String getNewFolder() {
@@ -20,24 +19,27 @@ public class Md implements Command {
 	public void setNewFolder(String newFolder) {
 		this.newFolder = newFolder;
 	}
-
-	public ComResponse executeCommand(File currentFolder) {
-		File newDir = new File(currentFolder.getAbsolutePath() + "\\"
-				+ newFolder);
-		if (!newDir.exists()) {
-
-			newDir.mkdir();
-			StringBuilder text = new StringBuilder("");
-			text.append("Dir created");
-		} else {
-			StringBuilder text = new StringBuilder("");
-			text.append("Dir exists");
-		}
 		
-		StringBuilder text = new StringBuilder("");
+	public ComResponse executeCommand(File currentFolder) {
+	
+		 File newDir = new File(currentFolder.getAbsolutePath() + "\\"
+					+ newFolder);
+		  	
+		  if (newDir.exists()) {
+				
+
+		 newDir.delete();
+		 StringBuilder text = new StringBuilder("");
+		 text.append("File deleted successfully");
+		  }   else {
+	
+			 StringBuilder text = new StringBuilder("");
+			 text.append("No such file"); 
+		  
+		}
+		StringBuilder text = new StringBuilder();
 		ComResponse sb= new ComResponse(currentFolder , text);
 		return sb;
-
-	
-	}
+		  
+}
 }
