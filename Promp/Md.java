@@ -4,42 +4,34 @@ import java.io.File;
 
 import stringvars.ComResponse;
 import stringvars.Command;
+import stringvars.CommandCompresor;
 
-public class Rd implements Command{
-	public String newFolder = "";
-	
-	public Rd(String argument) {
-		newFolder = argument;
+public class Md extends CommandCompresor implements Command {
+
+	public String string = "";
+
+	public Md(String argument) {
+		string = argument;
 	}
 
-	public String getNewFolder() {
-		return newFolder;
-	}
-
-	public void setNewFolder(String newFolder) {
-		this.newFolder = newFolder;
-	}
-		
 	public ComResponse executeCommand(File currentFolder) {
-	
-		 File newDir = new File(currentFolder.getAbsolutePath() + "\\"
-					+ newFolder);
-		  	
-		  if (newDir.exists()) {
-				
+		File newDir = new File(currentFolder.getAbsolutePath() + "\\"
+				+ string);
+		if (!newDir.exists()) {
 
-		 newDir.delete();
-		 StringBuilder text = new StringBuilder("");
-		 text.append("File deleted successfully");
-		  }   else {
-	
-			 StringBuilder text = new StringBuilder("");
-			 text.append("No such file"); 
-		  
+			newDir.mkdir();
+			StringBuilder text = new StringBuilder("");
+			text.append("Dir created");
+		} else {
+			StringBuilder text = new StringBuilder("");
+			text.append("Dir exists");
 		}
-		StringBuilder text = new StringBuilder();
+		
+		StringBuilder text = new StringBuilder("");
 		ComResponse sb= new ComResponse(currentFolder , text);
 		return sb;
-		  
+
+	
+	}
 }
-}
+
