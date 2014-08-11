@@ -6,24 +6,27 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 
+
 import stringvars.ComResponse;
-import stringvars.Command;
 
-public class Copy implements Command {
+public class Copy extends CommandWithArgument implements Command {
 
-	private String argument;
-	public Copy(String newArgument){
-		argument = newArgument;
-		
+	
+
+	public Copy(String newString) {
+		super(newString);
 	}
-	
-	
+
+
+
+
+
 	public ComResponse executeCommand(File currentFolder) {
 		
 			StringBuilder text = new StringBuilder();
 			ComResponse current= new ComResponse(currentFolder, text );
-			text.append("Arguments: \n"+argument);
-			String[] argumentsArray=argument.trim().split(" ");
+			text.append("Arguments: \n"+getArgument());
+			String[] argumentsArray=getArgument().trim().split(" ");
 			String from=argumentsArray[0];
 			String to= argumentsArray[1];
 		   
