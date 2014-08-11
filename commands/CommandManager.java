@@ -2,6 +2,7 @@ package stringvars;
 
 import stringvars.commands.Cd;
 import stringvars.commands.Cls;
+import stringvars.commands.Command;
 import stringvars.commands.Copy;
 import stringvars.commands.Delete;
 import stringvars.commands.Dir;
@@ -10,9 +11,10 @@ import stringvars.commands.Md;
 import stringvars.commands.Move;
 import stringvars.commands.Rd;
 
-public class CommandManager {
-	public Command getCommand(String cmd, String argument)
-			throws BadCommandException {
+public class CommandManager  {
+
+
+	public Command getCommand(String cmd,String argument) throws BadCommandException {
 
 		if (cmd.equals("echo")) {
 			Echo echo = new Echo(argument);
