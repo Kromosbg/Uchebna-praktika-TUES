@@ -10,12 +10,6 @@ public Md(String newString) {
 		super(newString);
 	}
 
-	/*	public String string = "";
-
-	public Md(String argument) {
-		string = argument;
-	}
-*/
 	public ComResponse executeCommand(File currentFolder) {
 		File newDir = new File(currentFolder.getAbsolutePath() + "\\"
 				+ getArgument());
