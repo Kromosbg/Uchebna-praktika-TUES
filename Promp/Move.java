@@ -3,20 +3,17 @@ package stringvars.commands;
 import java.io.File;
 
 import stringvars.ComResponse;
-import stringvars.Command;
 
-public class Move implements Command {
-	
-	private String argument;
-	public Move(String newArgument){
-		argument = newArgument;
-		
+public class Move extends CommandWithArgument implements Command {
+
+	public Move(String newString) {
+		super(newString);
 	}
-	@Override
+
 	public ComResponse executeCommand(File currentFolder) {
-		Copy copy=new Copy(argument);
+		Copy copy=new Copy(getArgument());
 		copy.executeCommand(currentFolder);
-		String firstArgument=argument.split(" ")[0]; 
+		String firstArgument=getArgument().split(" ")[0]; 
 		Delete delete=new Delete(firstArgument);
 		return delete.executeCommand(currentFolder);
 	}
