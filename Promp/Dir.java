@@ -1,35 +1,37 @@
 package stringvars.commands;
 
-//import java.io.File;
 import java.io.File;
-//import java.util.Scanner;
+import java.text.SimpleDateFormat;
 
 import stringvars.ComResponse;
-import stringvars.Command;
+
+public class Dir  implements Command{
 
 
-public class Echo implements Command{
-	
-//	Scanner userInput = new Scanner(System.in);
-	public String message = "";
-	
-
-	public Echo(String echo) {
-		message=echo;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
 
 	public ComResponse executeCommand(File currentFolder) {
-		StringBuilder text = new StringBuilder(message);
-		ComResponse result= new ComResponse(currentFolder,text);
-		return result;	
+		File[] paths = currentFolder.listFiles();	
+		StringBuilder text = new StringBuilder("  ");
 		
+		for (File path : paths) { 
+			
+			//System.out.println(path);
+
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("  dd/MM/yyyy  HH:mm:ss  ");
+			
+			text.append("\n");
+			text.append(path);
+		
+		
+
+
+			text.append(sdf.format(path.lastModified()));
+			//System.out.println(path);
+		}
+		
+		ComResponse command= new ComResponse(currentFolder, text);
+		return command;
+
 	}
 }
