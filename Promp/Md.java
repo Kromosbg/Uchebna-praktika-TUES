@@ -3,20 +3,22 @@ package stringvars.commands;
 import java.io.File;
 
 import stringvars.ComResponse;
-import stringvars.Command;
-import stringvars.CommandCompresor;
 
-public class Md extends CommandCompresor implements Command {
+public class Md extends CommandWithArgument implements Command {
 
-	public String string = "";
+public Md(String newString) {
+		super(newString);
+	}
+
+	/*	public String string = "";
 
 	public Md(String argument) {
 		string = argument;
 	}
-
+*/
 	public ComResponse executeCommand(File currentFolder) {
 		File newDir = new File(currentFolder.getAbsolutePath() + "\\"
-				+ string);
+				+ getArgument());
 		if (!newDir.exists()) {
 
 			newDir.mkdir();
@@ -34,4 +36,3 @@ public class Md extends CommandCompresor implements Command {
 	
 	}
 }
-
