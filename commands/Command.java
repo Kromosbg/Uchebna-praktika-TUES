@@ -1,7 +1,9 @@
-package stringvars;
+package stringvars.commands;
 
 import java.io.File;
 
+import stringvars.ComResponse;
+
 public interface Command {
-	public File executeCommand(File someFolder);
+	public ComResponse executeCommand(File currentFolder);
 }
