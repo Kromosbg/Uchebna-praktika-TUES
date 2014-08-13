@@ -2,29 +2,32 @@ package stringvars.commands;
 
 import java.io.File;
 
-import stringvars.Command;
+import stringvars.ComResponse;
 
 
-public class Echo implements Command{
+public class Echo extends CommandWithArgument implements Command{
+
 	
-	public String message;
-	
 
-	public Echo(String echo) {
-		echo=message;
+
+	public Echo(String message) {
+		super(message);
 	}
 
-	public String getMessage() {
-		return message;
-	}
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
 
-	public File executeCommand(File currentFolder) {
-		System.out.println(message);	
-		return currentFolder;
-	}
 
+
+
+
+	public ComResponse executeCommand(File currentFolder) {
+		
+		StringBuilder text = new StringBuilder();
+		ComResponse result= new ComResponse(currentFolder,text);
+		
+		text.append(getArgument());
+		
+		return result;	
+		
+	}
 }
